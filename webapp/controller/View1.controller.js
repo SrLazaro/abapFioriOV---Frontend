@@ -9,8 +9,15 @@ sap.ui.define([
 
         },
 
-        onPress: function () {
+        onHelloWorldButtonPress: function () {
             MessageToast.show("Hello World");
+        },
+        
+        onModelRefresh: function () {
+            this.getView()
+                .getModel()
+                .refresh(true);
+
         }
     });
 });

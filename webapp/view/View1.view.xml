@@ -1,12 +1,176 @@
-<mvc:View controllerName="zov001.controller.View1"
+<mvc:View
+    controllerName="zov001.controller.View1"
+    xmlns="sap.ui.table"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content>
-            <Button 
-                id="btnHelloWorld"
-                text="Hello World" 
-                press="onPress"/>
-        </content>
-    </Page>
+    xmlns:m="sap.m"
+    height="100%">
+
+    <m:Page
+        title="Cabeçalho OV"
+        enableScrolling="false"
+        class="sapUiContentPadding">
+
+        <m:content>
+
+            <Table
+                id="table"
+                rows="{/OVCabSet}"
+                selectionMode="None"
+                visibleRowCount="10"
+                enableBusyIndicator="true"
+                class="sapUiTinyMargin"
+                threshold="0">
+
+                <extension>
+
+                    <m:OverflowToolbar>
+
+                        <m:Title
+                            text="Ordens de Venda"
+                            level="H2"/>
+
+                        <m:ToolbarSpacer/>
+
+                        <m:Button
+                            icon="sap-icon://refresh"
+                            tooltip="Atualizar"
+                            press=".onModelRefresh"/>
+
+                    </m:OverflowToolbar>
+
+                </extension>
+
+                <columns>
+
+                    <!-- Ordem -->
+
+                    <Column
+                        sortProperty="OrdemId"
+                        filterProperty="OrdemId"
+                        width="8rem">
+
+                        <m:Label text="Ordem"/>
+
+                        <template>
+                            <m:Text text="{OrdemId}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Data -->
+
+                    <Column
+                        sortProperty="DataCriacao"
+                        filterProperty="DataCriacao"
+                        width="10rem">
+
+                        <m:Label text="Data Criação"/>
+
+                        <template>
+                            <m:Text text="{DataCriacao}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Criado Por -->
+
+                    <Column
+                        sortProperty="CriadoPor"
+                        filterProperty="CriadoPor"
+                        width="10rem">
+
+                        <m:Label text="Criado Por"/>
+
+                        <template>
+                            <m:Text text="{CriadoPor}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Cliente -->
+
+                    <Column
+                        sortProperty="ClienteId"
+                        filterProperty="ClienteId"
+                        width="8rem">
+
+                        <m:Label text="Cliente"/>
+
+                        <template>
+                            <m:Text text="{ClienteId}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Total Itens -->
+
+                    <Column
+                        sortProperty="TotalItens"
+                        filterProperty="TotalItens"
+                        hAlign="End"
+                        width="8rem">
+
+                        <m:Label text="Itens"/>
+
+                        <template>
+                            <m:Text text="{TotalItens}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Frete -->
+
+                    <Column
+                        sortProperty="TotalFrete"
+                        filterProperty="TotalFrete"
+                        hAlign="End"
+                        width="10rem">
+
+                        <m:Label text="Frete"/>
+
+                        <template>
+                            <m:Text text="{TotalFrete}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Total -->
+
+                    <Column
+                        sortProperty="TotalOrdem"
+                        filterProperty="TotalOrdem"
+                        hAlign="End"
+                        width="10rem">
+
+                        <m:Label text="Total Ordem"/>
+
+                        <template>
+                            <m:ObjectNumber number="{TotalOrdem}"/>
+                        </template>
+
+                    </Column>
+
+                    <!-- Status -->
+
+                    <Column
+                        sortProperty="Status"
+                        filterProperty="Status"
+                        width="6rem">
+
+                        <m:Label text="Status"/>
+
+                        <template>
+                            <m:ObjectStatus text="{Status}"/>
+                        </template>
+
+                    </Column>
+
+                </columns>
+
+            </Table>
+
+        </m:content>
+
+    </m:Page>
+
 </mvc:View>
