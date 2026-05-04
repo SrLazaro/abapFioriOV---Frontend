@@ -7,7 +7,7 @@
 |**Generation Platform**<br>Visual Studio Code|
 |**Template Used**<br>Basic V2|
 |**Service Type**<br>SAP System (ABAP On-Premise)|
-|**Service URL**<br>https://soalv3hsap01.stefanini.dom:44300/sap/opu/odata/sap/ZOV_001_SRV|
+
 |**Module Name**<br>zov001|
 |**Application Title**<br>App para gerenciar ordens de venda|
 |**Namespace**<br>|
