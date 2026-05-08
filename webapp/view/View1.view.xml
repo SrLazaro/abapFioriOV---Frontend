@@ -5,8 +5,15 @@
     xmlns:m="sap.m"
     height="100%">
 
+<!-- title="{i18n>pagTitle}"  -->
     <m:Page
-        title="Cabeçalho OV"
+        title="{
+            parts:[
+                {path:'i18n>welcomeMsg'},
+                {path:'/usuario/nome'}
+            ],
+            formatter: '.formatWelcomeMessage'
+        }"
         enableScrolling="false"
         class="sapUiContentPadding">
 
@@ -25,8 +32,8 @@
 
                     <m:OverflowToolbar>
 
-                        <m:Title
-                            text="Ordens de Venda"
+                        <m:Title 
+                            text="{i18n>tabTitle}"
                             level="H2"/>
 
                         <m:ToolbarSpacer/>
