@@ -14,7 +14,7 @@
             ],
             formatter: '.formatWelcomeMessage'
         }"
-        enableScrolling="false"
+        enableScrolling="true"
         class="sapUiContentPadding">
 
         <m:content>
@@ -175,6 +175,38 @@
                 </columns>
 
             </Table>
+
+            <m:VBox class="sapUiTinyMargin">
+
+                <m:Label text="Model padrão da view (origem: Controller)"/>
+                <m:Text text="{/usuario/nome}"/>
+                <m:Text text="{i18n>separador}"/>
+
+                <m:Label text="Model 'dados' da view (origem: Controller) "/>
+                <m:Text text="{dados>/usuario/nome}"/>
+                <m:Text text="{i18n>separador}"/>
+
+                <m:Label text="Model 'usuarios' (origem: Manifest)"/>
+                <m:Text text="{usuarios>/0/id} - {usuarios>/0/nome}"/>
+                <m:Text text="{i18n>separador}"/>
+
+                <m:Label text="Model padrão do serviço (origem: manifest)"/>
+
+                <m:List headerText="Ordens" items="{ path: '/OVCabSet' }">
+
+                    <m:StandardListItem
+                        title="Ordem - {OrdemId}"
+                        description="{CriadoPor}"/>
+
+                </m:List>
+
+                <m:Text text="{/OVCabSet/0/OrdemId} - {/OVCabSet/0/CriadoPor}"/>
+
+                <m:Button
+                    text="testar da massa"
+                    press=".onTestarDaMassa"/>
+
+            </m:VBox>
 
         </m:content>
 
