@@ -208,6 +208,26 @@
 
             </m:VBox>
 
+            <m:VBox id="vCaixa" class="sapUiTinyMargin">
+
+                <m:Label text="One Way: Model => View" />
+                <m:Input value="{oneway>/funcionario/nome}"/>
+                <m:Text text="{oneway>/funcionario/nome}"/>
+                <m:Button text="One Way - Adicionar Ponto Final" press="onTestOneWay" />
+
+                <m:Label text="Two Way: Model &lt;=&gt; View" />
+                <m:Input value="{twoway>/funcionario/nome}"/>
+                <m:Text text="{twoway>/funcionario/nome}" />
+                <m:Button text="Two Way - Adicionar Ponto Final" press="onTestTwoWay"/>
+
+                <m:Label text="One Time: Model => View (uma vez)" />
+                <m:Input value="{onetime>/funcionario/nome}" />
+                <m:Text text="{onetime>/funcionario/nome}"/>
+                <m:Button text="One Time - Adicionar Ponto Final" press="onTestOneTime" />
+
+            
+            </m:VBox>
+
         </m:content>
 
     </m:Page>
