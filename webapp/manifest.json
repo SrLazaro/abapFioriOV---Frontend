@@ -103,12 +103,26 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteNewCustomer",
+          "pattern": "customer/new",
+          "target": [ "TargetCustomerForm" ]
+        },
+        {
+          "name": "RouteEditCustomer",
+          "pattern": "customer/edit/{CustomerId}",
+          "target": [ "TargetCustomerForm" ]
         }
       ],
       "targets": {
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "TargetCustomerForm": {
+          "id": "CustomerFormView",
+          "name": "CustomerFormView"
         }
       }
     },

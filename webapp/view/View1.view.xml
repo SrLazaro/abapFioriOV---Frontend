@@ -1,12 +1,12 @@
 <mvc:View
     controllerName="zov001.controller.View1"
-    xmlns="sap.ui.table"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:m="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
     height="100%">
 
 <!-- title="{i18n>pagTitle}"  -->
-    <m:Page
+    <Page id="pageMain"
         title="{
             parts:[
                 {path:'i18n>welcomeMsg'},
@@ -17,219 +17,15 @@
         enableScrolling="true"
         class="sapUiContentPadding">
 
-        <m:content>
+        <content>
 
-            <Table
-                id="table"
-                rows="{/OVCabSet}"
-                selectionMode="None"
-                visibleRowCount="10"
-                enableBusyIndicator="true"
-                class="sapUiTinyMargin"
-                threshold="0">
+            <VBox id="vBoxCustomer" class="sapUISTinyMargen">
+                <Button id ="buttonNewCustomer" text="Novo Cliente" press="onNewCustomer"/>
+                <Button id ="buttonEditCustomer1" text="Editar Cliente 1" press="onEditCustomer1"/>
+            </VBox>
 
-                <extension>
+        </content>
 
-                    <m:OverflowToolbar>
-
-                        <m:Title 
-                            text="{i18n>tabTitle}"
-                            level="H2"/>
-
-                        <m:ToolbarSpacer/>
-
-                        <m:Button
-                            icon="sap-icon://refresh"
-                            tooltip="Atualizar"
-                            press=".onModelRefresh"/>
-
-                    </m:OverflowToolbar>
-
-                </extension>
-
-                <columns>
-
-                    <!-- Ordem -->
-
-                    <Column
-                        sortProperty="OrdemId"
-                        filterProperty="OrdemId"
-                        width="8rem">
-
-                        <m:Label text="Ordem"/>
-
-                        <template>
-                            <m:Text text="{OrdemId}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Data -->
-
-                    <Column
-                        sortProperty="DataCriacao"
-                        filterProperty="DataCriacao"
-                        width="10rem">
-
-                        <m:Label text="Data Criação"/>
-
-                        <template>
-                            <m:Text text="{DataCriacao}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Criado Por -->
-
-                    <Column
-                        sortProperty="CriadoPor"
-                        filterProperty="CriadoPor"
-                        width="10rem">
-
-                        <m:Label text="Criado Por"/>
-
-                        <template>
-                            <m:Text text="{CriadoPor}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Cliente -->
-
-                    <Column
-                        sortProperty="ClienteId"
-                        filterProperty="ClienteId"
-                        width="8rem">
-
-                        <m:Label text="Cliente"/>
-
-                        <template>
-                            <m:Text text="{ClienteId}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Total Itens -->
-
-                    <Column
-                        sortProperty="TotalItens"
-                        filterProperty="TotalItens"
-                        hAlign="End"
-                        width="8rem">
-
-                        <m:Label text="Itens"/>
-
-                        <template>
-                            <m:Text text="{TotalItens}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Frete -->
-
-                    <Column
-                        sortProperty="TotalFrete"
-                        filterProperty="TotalFrete"
-                        hAlign="End"
-                        width="10rem">
-
-                        <m:Label text="Frete"/>
-
-                        <template>
-                            <m:Text text="{TotalFrete}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Total -->
-
-                    <Column
-                        sortProperty="TotalOrdem"
-                        filterProperty="TotalOrdem"
-                        hAlign="End"
-                        width="10rem">
-
-                        <m:Label text="Total Ordem"/>
-
-                        <template>
-                            <m:ObjectNumber number="{TotalOrdem}"/>
-                        </template>
-
-                    </Column>
-
-                    <!-- Status -->
-
-                    <Column
-                        sortProperty="Status"
-                        filterProperty="Status"
-                        width="6rem">
-
-                        <m:Label text="Status"/>
-
-                        <template>
-                            <m:ObjectStatus text="{Status}"/>
-                        </template>
-
-                    </Column>
-
-                </columns>
-
-            </Table>
-
-            <m:VBox class="sapUiTinyMargin">
-
-                <m:Label text="Model padrão da view (origem: Controller)"/>
-                <m:Text text="{/usuario/nome}"/>
-                <m:Text text="{i18n>separador}"/>
-
-                <m:Label text="Model 'dados' da view (origem: Controller) "/>
-                <m:Text text="{dados>/usuario/nome}"/>
-                <m:Text text="{i18n>separador}"/>
-
-                <m:Label text="Model 'usuarios' (origem: Manifest)"/>
-                <m:Text text="{usuarios>/0/id} - {usuarios>/0/nome}"/>
-                <m:Text text="{i18n>separador}"/>
-
-                <m:Label text="Model padrão do serviço (origem: manifest)"/>
-
-                <m:List headerText="Ordens" items="{ path: '/OVCabSet' }">
-
-                    <m:StandardListItem
-                        title="Ordem - {OrdemId}"
-                        description="{CriadoPor}"/>
-
-                </m:List>
-
-                <m:Text text="{/OVCabSet/0/OrdemId} - {/OVCabSet/0/CriadoPor}"/>
-
-                <m:Button
-                    text="testar da massa"
-                    press=".onTestarDaMassa"/>
-
-            </m:VBox>
-
-            <m:VBox id="vCaixa" class="sapUiTinyMargin">
-
-                <m:Label text="One Way: Model => View" />
-                <m:Input value="{oneway>/funcionario/nome}"/>
-                <m:Text text="{oneway>/funcionario/nome}"/>
-                <m:Button text="One Way - Adicionar Ponto Final" press="onTestOneWay" />
-
-                <m:Label text="Two Way: Model &lt;=&gt; View" />
-                <m:Input value="{twoway>/funcionario/nome}"/>
-                <m:Text text="{twoway>/funcionario/nome}" />
-                <m:Button text="Two Way - Adicionar Ponto Final" press="onTestTwoWay"/>
-
-                <m:Label text="One Time: Model => View (uma vez)" />
-                <m:Input value="{onetime>/funcionario/nome}" />
-                <m:Text text="{onetime>/funcionario/nome}"/>
-                <m:Button text="One Time - Adicionar Ponto Final" press="onTestOneTime" />
-
-            
-            </m:VBox>
-
-        </m:content>
-
-    </m:Page>
+    </Page>
 
 </mvc:View>

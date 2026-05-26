@@ -1,0 +1,33 @@
+<mvc:View
+    controllerName="zov001.controller.CustomerFormView"
+    xmlns:t="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%">
+
+    <Page
+        id="pageCustomer"
+        enableScrolling="true"
+        class="sapUiContentPadding"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+
+        <content>
+
+            <VBox id="vBoxCustomer" class="sapUiSmallMargin">
+
+                <Text text="Estou no CustomerFormView"/>
+
+                <Button
+                    id="buttonBack"
+                    text="Voltar para View 1"
+                    press="onView1"/>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
