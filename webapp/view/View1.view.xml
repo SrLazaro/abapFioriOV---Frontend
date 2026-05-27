@@ -19,10 +19,23 @@
 
         <content>
 
-            <VBox id="vBoxCustomer" class="sapUISTinyMargen">
-                <Button id ="buttonNewCustomer" text="Novo Cliente" press="onNewCustomer"/>
-                <Button id ="buttonEditCustomer1" text="Editar Cliente 1" press="onEditCustomer1"/>
+            <VBox id="vBoxOV" class="sapUISTinyMargen">
+                
+                <Label id="label001" text="Última OV Criada"/>
+                <Input id="lastOrdemId" editable="false"/>
+                
+                <TextArea id="textArea001" value="" rows="8" width="100%" editable="false"/>
             </VBox>
+
+            <HBox id="hBoxOV" class="sapUISTinyMargen">
+
+                <Button id="butttonCreateOV" text="Criar OV" press="onCreateOVCab"/>
+                <Button id="butttonCreateDeepOV" text="Criar OV (Deep)" press="onCreateDeepOVCab"/>
+                <Button id="butttonReadOV" text="Ler OV" press="onReadOVCab"/>
+                <Button id="butttonUpdateOV" text="Atualizar OV" press="onUpdateOVCab"/>
+                <Button id="butttonDeleteOV" text="Deletar OV" press="onDeleteOVCab"/>
+        
+            </HBox>
 
         </content>
 
