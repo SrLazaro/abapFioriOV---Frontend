@@ -52,6 +52,12 @@
 		</fb:filterItems>
 	</fb:FilterBar>
 
+	<FlexBox alignItems="Center" justifyContent="End">
+		<Button text="Fornecer" class="sapUiTinyMarginEnd" press="onAtualizarStatus('L')"/>
+		<Button text="Faturar" class="sapUiTinyMarginEnd" press="onAtualizarStatus('F')"/>
+		<Button text="Cancelar" class="sapUiTinyMarginEnd" press="onAtualizarStatus('C')"/>
+	</FlexBox>
+
 	<t:Table id="table1"
 		rows="{/OVCabSet}"
 		selectionMode="MultiToggle"

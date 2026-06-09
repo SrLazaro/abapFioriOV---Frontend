@@ -29,6 +29,45 @@ sap.ui.define([
     
                 this.onFilterSearch();
             },
+            onAtualizarStatus: function(sStatus){
+                var oTable   = this.getView().byId("table1");
+                var oModel   = this.getOwnerComponent().getModel();
+                var aIndex   = oTable.getSelectedIndices();
+                var that     = this;
+
+                if(aIndex.length == 0){
+                    MessageToast.show("Selecione uma linha");
+                    return;
+                }
+
+                if(aIndex.length != 1){
+                    MessageToast.show("Selecione apenas uma linha");
+                    return;
+                }
+
+                var oItem = oTable.getContextByIndex(aIndex[0]);
+                var iOrdemId = oItem.getProperty("OrdemId");
+
+                this.getView().setBusy(true);
+                oModel.callFunction(
+                    "/ZFI_ATUALIZA_STATUS",
+                    {
+                    method: "GET",
+                    urlParameters: {
+                        ID_ORDEMID: iOrdemId,
+                        ID_STATUS: sStatus
+                    },
+                    success: function(oData, response) {
+                        that.getView().setBusy(false);
+                        MessageToast.show("Status atualizado com sucesso");
+                        that.onFilterSearch();
+                    },
+                    error: function(oError) {
+                        that.getView().setBusy(false);
+                        MessageToast.show("Erro ao atualizar status");
+                    }
+                });
+            },
 
             onFilterReset: function(){
     
