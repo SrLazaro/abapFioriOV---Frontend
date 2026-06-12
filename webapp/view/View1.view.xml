@@ -5,13 +5,10 @@
 	xmlns:fb="sap.ui.comp.filterbar"
     xmlns="sap.m">
     <Page id="page1" title="{i18n>title}">
-       
-	  	<core:Fragment fragmentName="zov001.view.Header" type="XML" />
+      
+	  	<Button text="Abrir Dialog" press="onOpenDialogInfo" />
 
-	  	<VBox class="sapUiTinyMargin">
-			<Text text="Conteúdo"/>
-		</VBox>
-
-		<mvc:XMLView viewName="zov001.view.Footer"/>
+        <core:Fragment fragmentName="zov001.view.DialogInfo" type="XML" />
+        <!--<core:Fragment fragmentName="zov001.view.DialogInfo" type="XML" />-->
     </Page>
 </mvc:View>

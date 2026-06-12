@@ -12,8 +12,32 @@ sap.ui.define([
             onInit: function () {
             },
 
-            onHeader: function(){
-                alert("onHeader");
+            onOpenDialogInfo() {
+                var that  = this;
+                var sName = "zov001.view.DialogInfo";
+                
+                if(!this.oDialog){
+                    
+                    /* isso serve para carregar o Dialog(fragment) na view
+                    this.loadFragment({
+                        name: sName
+                    }).then(function(oDialog2) {
+                        that.oDialog = oDialog2;
+                        that.oDialog.open();
+                    }.bind(this));
+                    */
+                    
+                    
+                    this.oDialog = this.byId("DialogInfo");
+                    that.oDialog.open();
+                }else{
+                    this.oDialog.open();
+                }
+            },
+            
+            onCloseDialogInfo: function(){
+                //this.byId("DialogInfo").close();
+                this.oDialog.close();
             }
         });
     });
