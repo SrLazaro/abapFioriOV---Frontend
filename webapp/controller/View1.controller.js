@@ -12,32 +12,54 @@ sap.ui.define([
             onInit: function () {
             },
 
-            onOpenDialogInfo() {
-                var that  = this;
-                var sName = "zov001.view.DialogInfo";
-                
-                if(!this.oDialog){
-                    
-                    /* isso serve para carregar o Dialog(fragment) na view
-                    this.loadFragment({
-                        name: sName
-                    }).then(function(oDialog2) {
-                        that.oDialog = oDialog2;
-                        that.oDialog.open();
-                    }.bind(this));
-                    */
-                    
-                    
-                    this.oDialog = this.byId("DialogInfo");
-                    that.oDialog.open();
-                }else{
-                    this.oDialog.open();
-                }
+            onRequisicaoNormal() {
+                this.executeRequests(false);
             },
-            
-            onCloseDialogInfo: function(){
-                //this.byId("DialogInfo").close();
-                this.oDialog.close();
+
+            onRequisicaoBatch() {
+                this.executeRequests(true);
+            },
+
+            executeRequests(bUseBatch) {
+                var oModel = this.getOwnerComponent().getModel();
+                // no "" > settings do manifest.json
+                // "useBatch": true PODE UTILIZAR ESSE CAMPO PARA DEIXAR ATIVO OU INATIVO O BATCH
+                // aqui server para ativar ou desativar o uso do batch
+                oModel.setUseBatch(bUseBatch);
+                
+                console.log("Executando requisições");
+                console.log("-------------------------------------------");
+
+                // requisição 1
+                oModel.read("/OVCabSet(1)",{
+                    success: function(oData2, oResponse){
+                        console.log("Leitura chave 1: OK");
+                    },
+                    error: function(oError){
+                        console.log("Leitura chave 1: Erro");
+                        console.log(oError);
+                    }
+                });
+
+                // requisição 2
+                oModel.read("/OVCabSet(2)",{
+                    success: function(oData2, oResponse){
+                        console.log("Leitura chave 2: OK");
+                    },
+                    error: function(oError){
+                        console.log("Leitura chave 2: Erro");
+                    }
+                });
+
+                // requisição 3
+                oModel.remove("/OVCabSet(3)",{
+                    success: function(oData2, oResponse){
+                        console.log("Exclusão chave 3: OK");
+                    },
+                    error: function(oError){
+                        console.log("Exclusão chave 3: Erro");
+                    }
+                });
             }
         });
     });
