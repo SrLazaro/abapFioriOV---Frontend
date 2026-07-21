@@ -100,31 +100,41 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
+          "name": "RouteOrdemList",
           "pattern": ":?query:",
           "target": [
-            "TargetView1"
+            "TargetOrdemList"
           ]
         },
         {
-          "name": "RouteNewCustomer",
-          "pattern": "customer/new",
-          "target": [ "TargetCustomerForm" ]
+          "name": "RouteOrdemNew",
+          "pattern": "ordem/nova",
+          "target": [
+            "TargetOrdemForm"
+          ]
         },
         {
-          "name": "RouteEditCustomer",
-          "pattern": "customer/edit/{CustomerId}",
-          "target": [ "TargetCustomerForm" ]
+          "name": "RouteOrdemEdit",
+          "pattern": "ordem/{OrdemId}/editar",
+          "target": [
+            "TargetOrdemForm"
+          ]
         }
       ],
-      "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "targets": {
+        "TargetOrdemForm": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OrdemForm",
+          "viewName": "OrdemForm"
         },
-        "TargetCustomerForm": {
-          "id": "CustomerFormView",
-          "name": "CustomerFormView"
+        "TargetOrdemList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OrdemList",
+          "viewName": "OrdemList"
         }
       }
     },
