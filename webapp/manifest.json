@@ -100,10 +100,10 @@
       },
       "routes": [
         {
-          "name": "RouteOrdemList",
+          "name": "RouteView1",
           "pattern": ":?query:",
           "target": [
-            "TargetOrdemList"
+            "TargetView1"
           ]
         },
         {
@@ -112,29 +112,22 @@
           "target": [
             "TargetOrdemForm"
           ]
-        },
-        {
-          "name": "RouteOrdemEdit",
-          "pattern": "ordem/{OrdemId}/editar",
-          "target": [
-            "TargetOrdemForm"
-          ]
         }
       ],
-        "targets": {
+      "targets": {
+        "TargetView1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View1",
+          "viewName": "View1"
+        },
         "TargetOrdemForm": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
           "viewId": "OrdemForm",
           "viewName": "OrdemForm"
-        },
-        "TargetOrdemList": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "OrdemList",
-          "viewName": "OrdemList"
         }
       }
     },
