@@ -14,9 +14,12 @@ sap.ui.define([
         return Controller.extend("zov001.controller.OrdemForm", {
             formatter: formatter,
 
+            formMode: "I",
+
             onInit: function () {
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.getRoute("RouteOrdemNew").attachMatched(this._onRouteMatchedNew,this);
+                oRouter.getRoute("RouteOrdemEdit").attachMatched(this._onRouteMatchedEdit,this);
             },
 
             liveChangeItemQuantity: function(oEvent){
@@ -211,7 +214,7 @@ sap.ui.define([
                 return oItem;
             },
 
-            onSave: function(){
+onSave: function(){
                 var that     = this;
                 var oView    = this.getView();
                 var oModel1  = this.getOwnerComponent().getModel();
@@ -228,36 +231,56 @@ sap.ui.define([
                     return;
                 }
 
-                oView.setBusy(true);
-                oModel1.create("/OVCabSet",oOrdem,{
-                    success: function(oData, oResponse){
-                        // ajustando itens que voltam dentro do campo results
-                        oData.toOVItems = oData.toOVItems.results;
+                 oView.setBusy(true);
+                if(this.formMode == "I"){
+                   
+                    oModel1.create("/OVCabSet",oOrdem,{
+                        success: function(oData, oResponse){
+                            // ajustando itens que voltam dentro do campo results
+                            oData.toOVItems = oData.toOVItems.results;
 
-                        oModel2.setData(oData);
-                        if(oResponse.statusCode == 201){
-                            // bloqueando campos
-                            oView.byId("OVCab.DataCriacao").setEditable(false);
-                            oView.byId("OVCab.CriadoPor").setEditable(false);
-                            
-                            MessageToast.show("Ordem cadastrada com sucesso");
-                        }else{
-                            MessageToast.show("Erro ao salvar");    
-                        }
+                            oModel2.setData(oData);
+                            if(oResponse.statusCode == 201){
+                                // bloqueando campos
+                                oView.byId("OVCab.DataCriacao").setEditable(false);
+                                oView.byId("OVCab.CriadoPor").setEditable(false);
+                                
+                                MessageToast.show("Ordem cadastrada com sucesso");
+                            }else{
+                                MessageToast.show("Erro ao salvar");    
+                            }
 
-                        oView.setBusy(false);
-                    },
-                    error: function(oResponse){
-                        var oError = JSON.parse(oResponse.responseText);
-                        MessageToast.show(oError.error.message.value);
-                        oView.setBusy(false);
-                    }}
-                );
-                
+                            oView.setBusy(false);
+                        },
+                        error: function(oResponse){
+                            var oError = JSON.parse(oResponse.responseText);
+                            MessageToast.show(oError.error.message.value);
+                            oView.setBusy(false);
+                        }}
+                    );
+                }else{
+                    
+                    // com deep entity, o método create é usado para atualizar também
+                    oModel1.create("/OVCabSet",oOrdem,{
+                        success: function(oData, oResponse){
+                            if(oResponse.statusCode == 204 || oResponse.statusCode == 201){
+                                MessageToast.show("Ordem atualizada com sucesso");
+                            }
+                            oView.setBusy(false);
+                        },
+                        error: function(oResponse){
+                            var oError = JSON.parse(oResponse.responseText);
+                            MessageToast.show(oError.error.message.value);
+                            oView.setBusy(false);
+                        }}
+                    );
+                }
             },
 
             _onRouteMatchedNew: function(oEvent){
                 var oView = this.getView();
+
+                this.formMode = "I";
 
                 var oModel = new sap.ui.model.json.JSONModel();
                 oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
@@ -270,6 +293,55 @@ sap.ui.define([
 
                 this.recalcOrder();
             },
+
+        _onRouteMatchedEdit: function(oEvent){
+                var that     = this;
+                var oView    = this.getView();
+                var oArgs    = oEvent.getParameter("arguments");
+                var sOrdemId = oArgs.OrdemId;
+                var oModel   = this.getOwnerComponent().getModel();
+                var oModel1  = null;
+
+                this.formMode = "U";
+                
+                // limpando dados
+                oModel1 = new sap.ui.model.json.JSONModel(this.createEmptyOrderObject());
+                oModel1.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+
+                oView.byId("OVCab.DataCriacao").setEditable(false);
+                oView.byId("OVCab.CriadoPor").setEditable(false);
+                oView.byId("OVCab.ClienteId").setValueState("None");
+                
+                oView.setBusy(true);
+
+                // cabeçalho
+                oModel.read("/OVCabSet("+sOrdemId+")",{
+                    success: function(oOrdem, oResponse){
+                        // items
+                        oModel.read("/OVCabSet("+sOrdemId+")/toOVItems",{
+                            success: function(oData, oResponse){
+                                oOrdem.toOVItems = oData.results;
+                                oModel1.setData(oOrdem);
+                                oView.setModel(oModel1);
+                                
+                                that.recalcOrder();
+                                oView.setBusy(false);
+                            },
+                            error: function(oError){
+                                var oError = JSON.parse(oResponse.responseText);
+                                MessageToast.show(oError.error.message.value);
+                                oView.setBusy(false);
+                            }
+                        });
+                    },
+                    error: function(oResponse){
+                        var oError = JSON.parse(oResponse.responseText);
+                        MessageToast.show(oError.error.message.value);
+                        oView.setBusy(false);
+                    }
+                });
+            },
+
 
             parseInt: function(sValue){
                 if(sValue == "" || sValue == null || sValue == undefined){
