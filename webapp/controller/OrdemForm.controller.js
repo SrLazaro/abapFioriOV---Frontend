@@ -393,7 +393,7 @@ onSave: function(){
                 if (sPreviousHash !== undefined) {
                     window.history.go(-1);
                 } else {
-                    UIComponent.getRouterFor(this).navTo("RouteView1");
+                    UIComponent.getRouterFor(this).navTo("RouteOrdemList");
                 }
             }
         });
