@@ -1,5 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "zov001/controller/BaseController",
     "sap/m/MessageToast",
     "../model/formatter",
     "sap/ui/core/routing/History",
@@ -214,7 +215,7 @@ sap.ui.define([
                 return oItem;
             },
 
-                        onDelete: function(){
+            onDelete: function(){
                 var oOrdem = this.getOrderOData();
                 var that   = this;
 
@@ -423,7 +424,7 @@ onSave: function(){
                 }
             },
 
-                        onDeleteOrder: function(iOrdemId,callback){
+          /*onDeleteOrder: function(iOrdemId,callback){
                 var oModel1 = this.getOwnerComponent().getModel();
                 var oView   = this.getView();
                 
@@ -446,7 +447,7 @@ onSave: function(){
                         callback("E");
                     }}
                 );
-            }
+            }*/
 
         });
     });

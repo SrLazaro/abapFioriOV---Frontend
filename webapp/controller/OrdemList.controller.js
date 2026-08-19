@@ -1,5 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "zov001/controller/BaseController",
     "sap/m/MessageToast",
     "../model/formatter"
 ],
@@ -122,7 +123,7 @@ sap.ui.define([
                 oRouter.navTo("RouteOrdemEdit",{OrdemId:sOrdemId});
             },
 
-           onDelete: function(oEvent){
+           /*onDelete: function(oEvent){
                 var oSource = oEvent.getSource();
                 var sOrdemId = oSource.data("OrdemId");
                 var oModel  = this.getOwnerComponent().getModel();
@@ -156,9 +157,19 @@ sap.ui.define([
 
                     this.onFilterSearch();
 
+            },*/
+
+        onDelete: function(oEvent){
+                var oSource  = oEvent.getSource();
+                var sOrdemId = oSource.data("OrdemId");
+                var that     = this;
+
+                this.onDeleteOrder(sOrdemId,function(sStatus){
+                    if(sStatus == 'S'){
+                        that.onFilterSearch();
+                    }
+                });
             },
-
-
             _onRouteMatchedList: function(oEvent){
                 this.onFilterSearch();
             }
