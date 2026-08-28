@@ -261,7 +261,12 @@ onSave: function(){
                     oModel1.create("/OVCabSet",oOrdem,{
                         success: function(oData, oResponse){
                             // ajustando itens que voltam dentro do campo results
-                            oData.toOVItems = oData.toOVItems.results;
+                            if (oData.toOVItems && oData.toOVItems.results) {
+                                oData.toOVItems = oData.toOVItems.results;
+                            } else {
+                                oData.toOVItems = [];
+                            }
+                         
 
                             oModel2.setData(oData);
                             if(oResponse.statusCode == 201){
