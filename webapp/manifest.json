@@ -1,5 +1,5 @@
 {
-  "_version": "1.84.0",
+  "_version": "1.12.0",
   "sap.app": {
     "id": "zov001",
     "type": "application",
@@ -48,9 +48,8 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.147.2",
+      "minUI5Version": "1.48.9",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {}

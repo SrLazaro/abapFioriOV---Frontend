@@ -1,0 +1,13 @@
+{
+    "base": "./dist",
+    "conn_usestrictssl": false,
+    "conn_server": "https://soalv3hsap01.stefanini.dom:44300",
+    "conn_client": "800",
+    "conn_user": "LSRODRIGUES5",
+    "conn_password": "Stefanini@2025",
+    "abap_package": "ZFIORI_003",
+    "abap_bsp": "ZOV001",
+    "abap_bsp_text": "Ordem de Venda",
+    "abap_language": "PT",
+    "abap_transport": "SFDK901293"
+}

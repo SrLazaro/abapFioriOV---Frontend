@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>App para gerenciar ordens de venda</title>
+
     <style>
-        html, body, body > div, #container, #container-uiarea {
+        html,
+        body,
+        body > div,
+        #content {
             height: 100%;
         }
     </style>
+
     <script
         id="sap-ui-bootstrap"
-        src="resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-resource-roots='{
-            "zov001": "./"
+        src="/sap/public/bc/ui5_ui5/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_belize"
+        data-sap-ui-resourceroots='{
+            "zov001": "/sap/bc/ui5_ui5/sap/zov001/"
         }'
-        data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"
         data-sap-ui-compat-version="edge"
         data-sap-ui-async="true"
-        data-sap-ui-frame-options="trusted"
-    ></script>
+        data-sap-ui-frame-options="trusted">
+    </script>
+
 </head>
-<body class="sapUiBody sapUiSizeCompact" id="content">
-    <div
-        data-sap-ui-component
-        data-name="zov001"
-        data-id="container"
-        data-settings='{"id" : "zov001"}'
-        data-handle-validation="true"
-    ></div>
+
+<body
+    class="sapUiBody sapUiSizeCompact"
+    id="content">
+
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            new sap.ui.core.ComponentContainer({
+                name: "zov001",
+                height: "100%"
+            }).placeAt("content");
+        });
+    </script>
+
 </body>
 </html>

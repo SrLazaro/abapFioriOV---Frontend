@@ -1,0 +1,72 @@
+Como configurar o App para aparecer no Fiori Launchpad
+
+Informações do App
+App BSP: ZOV
+Objeto Semântico: ZOV
+Catálogo: ZCAT1
+Grupo: ZGRP1
+
+Passo a Passo
+1) Cadastrar objeto semântico
+Transação: /n/UI2/SEMOBJ
+
+Clique em novas entradas
+Objeto: ZOV
+Nome: ZOV
+Descrição: Ordem de Venda
+Salve
+
+2) Cadastrar Catálogo
+Transação: /n/UI2/FLPD_CUST
+
+Criar request de customização e configurar na engrenagem
+
+2.1) Criar catálogo
+Clique na aba Catálogo e cadastre (Botão +)
+Título: Catálogo 1
+ID: ZCAT1
+Salve
+
+2.2) Criar Tile
+Clique em Tiles
+Clique no botão "Create Tile"
+Clique em "App Launcher - Static"
+
+Título: Ordem de Venda
+Icone: Selecione qualquer um da lista
+Objeto Semântico: ZOV
+Ação: manage (pode ser qualquer uma)
+
+Se a versão do App for compatível com o Servidor
+Marque o flag "Use semantic object navigation"
+
+Se a versão do App NÃO for compatível com o Servidor
+Desmarque o flag "Use semantic object navigation"
+Target URL: /sap/bc/ui5_ui5/sap/zov
+
+Salve
+
+2.3) Criar Target Mapping
+Selecione Target Mapping
+Clique no botão "Create Target Mapping"
+Objeto Semântico: ZOV
+Ação: manage
+Application Type: SAPUI5 Fiori App
+Title: Ordem de Venda
+URL: /sap/bc/ui5_ui5/sap/zov
+ID: zov (Localizado no arquivo manifest.json, 
+atributo sap.app.id)
+Salve
+
+3) Cadastrar Grupo
+Transação: /n/UI2/FLPD_CUST
+
+3.1) Criar grupo
+Clique na aba Grupo e cadastre (Botão +)
+Título: Grupo 1
+ID: ZGRP1
+Salve
+
+Clique em "Show as Tiles"
+Coloque o nome do catálogo "ZCAT1" e pressione Enter
+Ao localizar, clique no "+"
