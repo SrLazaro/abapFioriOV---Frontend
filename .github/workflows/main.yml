@@ -1,11 +1,46 @@
-name: test-and-deploy
-on: [push]
-jobs:
-  test-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.11.1'
-      - run: sh github-devops.sh
+```yaml
+# Define o nome do workflow no GitHub Actions.
+# name: test-and-deploy
+
+# Define o evento que irá disparar a execução do workflow.
+# Neste caso, o workflow será executado sempre que houver um push
+# no repositório.
+# on: [push]
+
+# Define os jobs que serão executados pelo workflow.
+# jobs:
+
+# Define o job responsável por executar os testes e o deploy.
+# test-and-deploy:
+
+# Define o sistema operacional utilizado para executar o job.
+# Neste caso, será utilizada uma máquina virtual com Ubuntu.
+# runs-on: ubuntu-latest
+
+# Define as etapas que serão executadas dentro do job.
+# steps:
+
+# Faz o checkout do código-fonte do repositório.
+# A action checkout@v4 baixa o conteúdo do repositório
+# para o ambiente onde o workflow está sendo executado.
+# - uses: actions/checkout@v4
+
+# Instala e configura o Node.js no ambiente de execução.
+# A action setup-node@v4 permite definir a versão específica
+# do Node.js que será utilizada pelo projeto.
+# - uses: actions/setup-node@v4
+
+# Define as configurações utilizadas pela action setup-node.
+# with:
+
+# Define a versão do Node.js utilizada durante a execução.
+# Neste caso, será utilizada a versão 20.11.1.
+#   node-version: '20.11.1'
+
+# Executa o script github-devops.sh.
+# O comando "sh" executa o arquivo como um script Shell.
+#
+# Esse script é responsável pelas etapas definidas no arquivo
+# github-devops.sh, como instalação de dependências, execução
+# dos testes, build e deploy da aplicação.
+# - run: sh github-devops.sh
